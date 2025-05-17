@@ -1,6 +1,6 @@
-# todo_app
+# Todo application
 
-A new Flutter project.
+A new Flutter project, Todo application to create and track tasks.
 
 ## Getting Started
 
