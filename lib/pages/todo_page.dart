@@ -13,6 +13,7 @@ class _TodoPageState extends State<TodoPage> {
   List tasksList = [
     ['Move your salary to JIB', true],
     ['Remind the boys with YouTube subscription', false],
+    ['Pay Internet Bill', false],
   ];
 
   void checkBoxChanged(bool? value, int index) {

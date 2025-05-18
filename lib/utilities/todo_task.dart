@@ -15,7 +15,7 @@ class Task extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+      margin: EdgeInsets.only(top: 10.0, bottom: 10),
       padding: EdgeInsets.all(12.0),
       decoration: BoxDecoration(
         color: Colors.blueGrey[900],
@@ -24,7 +24,15 @@ class Task extends StatelessWidget {
       child: Row(
         children: [
           Checkbox(value: taskCompleted, onChanged: onChanged),
-          Text(taskName),
+          Text(
+            taskName,
+            style: TextStyle(
+              decoration:
+                  taskCompleted
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
+            ),
+          ),
         ],
       ),
     );
