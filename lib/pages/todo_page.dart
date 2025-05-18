@@ -22,6 +22,25 @@ class _TodoPageState extends State<TodoPage> {
     });
   }
 
+  void createNewTask() {
+    showDialog(
+      context: context,
+      builder: (builder) {
+        return AlertDialog(
+          title: Text('Dialog Title'),
+          content: Container(
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Create a new task',
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +64,7 @@ class _TodoPageState extends State<TodoPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: createNewTask,
         child: Icon(Icons.add),
       ),
     );
