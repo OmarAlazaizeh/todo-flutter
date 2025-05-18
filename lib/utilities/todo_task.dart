@@ -18,7 +18,8 @@ class Task extends StatelessWidget {
       margin: EdgeInsets.only(top: 10.0, bottom: 10),
       padding: EdgeInsets.all(12.0),
       decoration: BoxDecoration(
-        color: Colors.blueGrey[900],
+        // color: Colors.blueGrey[900],
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Row(

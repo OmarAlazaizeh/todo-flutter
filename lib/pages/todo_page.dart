@@ -28,7 +28,8 @@ class _TodoPageState extends State<TodoPage> {
       appBar: AppBar(
         title: Text('To Do'),
         centerTitle: true,
-        backgroundColor: Colors.blueGrey[900],
+        // backgroundColor: Colors.blueGrey[900],
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -42,6 +43,10 @@ class _TodoPageState extends State<TodoPage> {
             );
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
     );
   }

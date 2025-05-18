@@ -12,7 +12,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData.dark(),
+      theme: ThemeData(
+        // Define the default brightness and colors.
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.deepOrange,
+
+          brightness: Brightness.light,
+        ),
+        scaffoldBackgroundColor: Colors.deepOrange[50],
+      ),
       home: TodoPage(),
     );
   }
