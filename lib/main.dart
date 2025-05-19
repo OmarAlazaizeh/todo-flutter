@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
 
           brightness: Brightness.light,
         ),
-        scaffoldBackgroundColor: Colors.deepOrange[50],
+        scaffoldBackgroundColor: Colors.deepOrange[100],
       ),
       home: TodoPage(),
     );
