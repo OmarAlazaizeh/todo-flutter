@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/utilities/dialog_button.dart';
 
 class DialogBox extends StatelessWidget {
-  DialogBox({
+  const DialogBox({
     super.key,
     required this.textConterler,
     required this.onSave,
@@ -10,8 +10,8 @@ class DialogBox extends StatelessWidget {
   });
 
   final TextEditingController textConterler;
-  VoidCallback onSave;
-  VoidCallback onCancel;
+  final VoidCallback onSave;
+  final VoidCallback onCancel;
 
   @override
   Widget build(BuildContext context) {
