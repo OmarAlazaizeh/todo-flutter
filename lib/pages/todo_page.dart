@@ -10,6 +10,8 @@ class TodoPage extends StatefulWidget {
 }
 
 class _TodoPageState extends State<TodoPage> {
+  final TextEditingController _textControler = TextEditingController();
+
   // TODO: you can move this to a separete file
   List tasksList = [
     ['Move your salary to JIB', true],
@@ -23,8 +25,26 @@ class _TodoPageState extends State<TodoPage> {
     });
   }
 
+  void saveNewTask() {
+    setState(() {
+      tasksList.add([_textControler.text, false]);
+
+      _textControler.clear();
+    });
+
+    Navigator.of(context).pop();
+  }
+
   void createNewTask() {
-    showDialog(context: context, builder: (builder) => DialogBox());
+    showDialog(
+      context: context,
+      builder:
+          (builder) => DialogBox(
+            textConterler: _textControler,
+            onSave: saveNewTask,
+            onCancel: () => Navigator.of(context).pop(),
+          ),
+    );
   }
 
   @override
