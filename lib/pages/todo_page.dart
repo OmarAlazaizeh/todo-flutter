@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/utilities/todo_task.dart';
+import 'package:todo_app/utilities/dialog_box.dart';
 
 class TodoPage extends StatefulWidget {
   const TodoPage({super.key});
@@ -23,22 +24,7 @@ class _TodoPageState extends State<TodoPage> {
   }
 
   void createNewTask() {
-    showDialog(
-      context: context,
-      builder: (builder) {
-        return AlertDialog(
-          title: Text('Dialog Title'),
-          content: Container(
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Create a new task',
-              ),
-            ),
-          ),
-        );
-      },
-    );
+    showDialog(context: context, builder: (builder) => DialogBox());
   }
 
   @override
