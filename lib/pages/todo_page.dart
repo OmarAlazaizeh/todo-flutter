@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todo_app/data/database.dart';
 import 'package:todo_app/utilities/todo_task.dart';
 import 'package:todo_app/utilities/dialog_box.dart';
 
@@ -10,29 +12,44 @@ class TodoPage extends StatefulWidget {
 }
 
 class _TodoPageState extends State<TodoPage> {
-  final TextEditingController _textControler = TextEditingController();
+  // reference the box
+  final _myBox = Hive.box('mybox');
 
-  // TODO: you can move this to a separete file
-  List tasksList = [
-    ['Move your salary to JIB', true],
-    ['Remind the boys with YouTube subscription', false],
-    ['Pay Internet Bill', false],
-  ];
+  TasksDatabase dp = TasksDatabase();
+
+  @override
+  void initState() {
+    // If this is the first time every opening the app, then create default data
+    if (_myBox.get('TASKSLIST') == null) {
+      dp.createInitialData();
+    } else {
+      // There is already exist data
+      dp.loadData();
+    }
+
+    super.initState();
+  }
+
+  // text controller
+  final TextEditingController _textControler = TextEditingController();
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
-      tasksList[index][1] = !tasksList[index][1];
+      dp.tasksList[index][1] = !dp.tasksList[index][1];
     });
+
+    dp.updateData();
   }
 
   void saveNewTask() {
     setState(() {
-      tasksList.add([_textControler.text, false]);
+      dp.tasksList.add([_textControler.text, false]);
 
       _textControler.clear();
     });
 
     Navigator.of(context).pop();
+    dp.updateData();
   }
 
   void createNewTask() {
@@ -49,8 +66,10 @@ class _TodoPageState extends State<TodoPage> {
 
   void deleteTask(int index) {
     setState(() {
-      tasksList.removeAt(index);
+      dp.tasksList.removeAt(index);
     });
+
+    dp.updateData();
   }
 
   @override
@@ -65,11 +84,11 @@ class _TodoPageState extends State<TodoPage> {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: ListView.builder(
-          itemCount: tasksList.length,
+          itemCount: dp.tasksList.length,
           itemBuilder: (context, index) {
             return Task(
-              taskName: tasksList[index][0],
-              taskCompleted: tasksList[index][1],
+              taskName: dp.tasksList[index][0],
+              taskCompleted: dp.tasksList[index][1],
               onChanged: (value) => checkBoxChanged(value, index),
               deleteTask: (context) => deleteTask(index),
             );
